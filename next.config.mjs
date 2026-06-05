@@ -9,6 +9,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'drbadrkadri.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'i.ytimg.com' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
     ],
     formats: ['image/avif', 'image/webp'],
   },

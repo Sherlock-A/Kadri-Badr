@@ -33,11 +33,12 @@ export default function Navbar() {
   }
 
   const navLinks = [
-    { href: '#services',       label: t('services') },
-    { href: '#doctor',         label: t('doctor') },
-    { href: '#international',  label: t('international') },
-    { href: '#results',        label: t('results') },
-    { href: '#contact',        label: t('contact') },
+    { href: '#services',            label: t('services') },
+    { href: '#doctor',              label: t('doctor') },
+    { href: '#international',       label: t('international') },
+    { href: '#results',             label: t('results') },
+    { href: `/${locale}/blog`,      label: t('blog') },
+    { href: '#contact',             label: t('contact') },
   ]
 
   return (

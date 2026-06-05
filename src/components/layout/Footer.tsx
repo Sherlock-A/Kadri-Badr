@@ -93,12 +93,13 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                ['#services',      t('links_services')],
-                [`/${locale}`,     t('links_doctor')],
-                ['#international', t('links_international')],
-                ['#results',       t('links_results')],
-                ['#contact',       t('links_contact')],
-                ['#faq',           t('links_faq')],
+                ['#services',           t('links_services')],
+                [`/${locale}`,          t('links_doctor')],
+                ['#international',      t('links_international')],
+                ['#results',            t('links_results')],
+                [`/${locale}/blog`,     'Blog'],
+                ['#contact',            t('links_contact')],
+                ['#faq',                t('links_faq')],
               ].map(([href, label]) => (
                 <li key={href}>
                   <a

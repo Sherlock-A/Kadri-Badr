@@ -168,6 +168,26 @@ export default function ContactSection() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-3"
           >
+            {/* Calendly CTA */}
+            <div className="mb-6 p-5 rounded-2xl bg-gold-50 border border-gold-200
+                            flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="flex-1">
+                <p className="text-navy-900 font-semibold text-sm">
+                  Préférez une consultation vidéo ?
+                </p>
+                <p className="text-navy-500 text-xs mt-0.5">
+                  Parlez au Dr. Kadri Badr en 20 min depuis chez vous — gratuit, sans engagement.
+                </p>
+              </div>
+              <a
+                href="https://calendly.com/drkadribadr/consultation-gratuite"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-navy text-sm px-5 py-2.5 whitespace-nowrap flex-shrink-0"
+              >
+                Réserver un créneau →
+              </a>
+            </div>
             {status === 'success' ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}

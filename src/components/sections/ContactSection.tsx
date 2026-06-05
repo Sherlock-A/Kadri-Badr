@@ -60,7 +60,7 @@ export default function ContactSection() {
           >
             <span className="section-badge mb-4">
               <MessageSquare className="w-3 h-3" />
-              {t('badge')}
+              Consultation gratuite · Réponse en moins d&apos;1h
             </span>
           </motion.div>
           <motion.h2
@@ -68,18 +68,21 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="heading-lg text-navy-900 mb-3"
+            className="heading-lg text-navy-900 mb-4"
           >
-            {t('title')}
+            Votre transformation
+            <br />
+            <span className="text-gold-gradient">commence ici.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="body-md text-navy-600 max-w-xl mx-auto"
+            className="body-md text-navy-500 max-w-lg mx-auto"
           >
-            {t('subtitle')}
+            Envoyez vos photos, obtenez un plan de traitement personnalisé et un devis détaillé.
+            Sans engagement, sans attente.
           </motion.p>
         </div>
 
@@ -168,15 +171,35 @@ export default function ContactSection() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-3"
           >
-            {/* Calendly CTA */}
-            <div className="mb-6 p-5 rounded-2xl bg-gold-50 border border-gold-200
+            {/* OPTION 1 — WhatsApp direct (primary, fastest) */}
+            <a
+              href={`https://wa.me/212666686646?text=${encodeURIComponent('Bonjour Dr. Kadri Badr, je souhaite un devis gratuit pour mon traitement.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp w-full justify-center mb-3 text-base py-4"
+            >
+              <WhatsAppIcon />
+              Écrire maintenant sur WhatsApp — Réponse &lt;1h
+            </a>
+
+            {/* Divider */}
+            <div className="flex items-center gap-4 my-5">
+              <div className="flex-1 h-px bg-gray-100" />
+              <span className="text-navy-400 text-xs font-medium uppercase tracking-wider">
+                ou remplissez le formulaire
+              </span>
+              <div className="flex-1 h-px bg-gray-100" />
+            </div>
+
+            {/* OPTION 2 — Calendly vidéo */}
+            <div className="mb-6 p-4 rounded-2xl bg-gold-50 border border-gold-200
                             flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex-1">
                 <p className="text-navy-900 font-semibold text-sm">
                   Préférez une consultation vidéo ?
                 </p>
                 <p className="text-navy-500 text-xs mt-0.5">
-                  Parlez au Dr. Kadri Badr en 20 min depuis chez vous — gratuit, sans engagement.
+                  20 min avec le Dr. Kadri depuis chez vous. Gratuit, sans engagement.
                 </p>
               </div>
               <a
@@ -185,7 +208,7 @@ export default function ContactSection() {
                 rel="noopener noreferrer"
                 className="btn-navy text-sm px-5 py-2.5 whitespace-nowrap flex-shrink-0"
               >
-                Réserver un créneau →
+                Réserver →
               </a>
             </div>
             {status === 'success' ? (

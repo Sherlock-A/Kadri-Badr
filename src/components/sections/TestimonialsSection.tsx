@@ -197,6 +197,30 @@ export default function TestimonialsSection() {
             </div>
           ))}
         </motion.div>
+
+        {/* Google review CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.55 }}
+          className="mt-10 text-center"
+        >
+          <p className="text-white/50 text-sm mb-3">
+            Vous êtes patient chez nous ? Votre avis aide des milliers de futurs patients.
+          </p>
+          <a
+            href="https://www.google.com/search?q=Dr+Kadri+Badr+Cabinet+Dentaire+Fès&hl=fr#lrd=0x0:0x0,1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl
+                       border border-white/20 text-white/70 hover:text-white
+                       hover:border-gold-500/50 transition-all text-sm font-medium"
+          >
+            <Star className="w-4 h-4 text-gold-400 fill-gold-400" />
+            Laisser un avis Google
+          </a>
+        </motion.div>
       </div>
     </section>
   )

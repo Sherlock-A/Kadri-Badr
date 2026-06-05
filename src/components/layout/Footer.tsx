@@ -147,7 +147,9 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5
                         flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/40 text-xs">{t('copy')}</p>
+          <p className="text-white/40 text-xs">
+            © {new Date().getFullYear()} Dr. Kadri Badr. Tous droits réservés.
+          </p>
           <div className="flex items-center gap-4">
             <a href="#" className="text-white/40 hover:text-white/70 text-xs transition-colors">
               {t('legal_privacy')}

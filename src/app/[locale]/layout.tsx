@@ -122,8 +122,9 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'Dentist',
+              '@type': ['Dentist', 'MedicalOrganization'],
               name: 'Dr. Kadri Badr — Cabinet Dentaire',
+              description: 'Cabinet dentaire premium à Fès spécialisé en tourisme dentaire. Implants Nobel Biocare, facettes Ivoclar EMAX, Hollywood Smile. Économisez 70% vs tarifs européens.',
               image: 'https://drbadrkadri.com/og-image.jpg',
               url: 'https://drbadrkadri.com',
               telephone: '+212666686646',
@@ -156,8 +157,21 @@ export default async function LocaleLayout({
                 '@type': 'AggregateRating',
                 ratingValue: '4.9',
                 reviewCount: '500',
+                bestRating: '5',
+                worstRating: '1',
               },
-              sameAs: ['https://drbadrkadri.com'],
+              hasCredential: [
+                { '@type': 'EducationalOccupationalCredential', 'name': 'Nobel Biocare Certified Partner' },
+                { '@type': 'EducationalOccupationalCredential', 'name': 'Straumann Partner' },
+                { '@type': 'EducationalOccupationalCredential', 'name': 'ISO 9001 Certified' },
+              ],
+              paymentAccepted: 'Cash, Credit Card, Bank Transfer, SEPA',
+              currenciesAccepted: 'MAD, EUR',
+              sameAs: [
+                'https://drbadrkadri.com',
+                'https://www.instagram.com/drkadribadr',
+                'https://www.facebook.com/drkadribadr',
+              ],
             }),
           }}
         />

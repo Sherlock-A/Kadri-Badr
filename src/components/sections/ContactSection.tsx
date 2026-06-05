@@ -148,7 +148,7 @@ export default function ContactSection() {
             {/* Map */}
             <div className="rounded-2xl overflow-hidden h-48 bg-navy-100 relative">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53789.77376!2d-5.0078!3d34.0181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd9f8b4a1b1b1b1b%3A0x1!2sFes%2C+Morocco!5e0!3m2!1sfr!2sfr!4v1700000000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106535.96459813887!2d-5.0636!3d34.0181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd9f8a0b1e7b1c19%3A0x400d9c24256c8130!2sFes%2C+Morocco!5e0!3m2!1sfr!2sfr!4v1717593600000!5m2!1sfr!2sfr"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

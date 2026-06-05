@@ -199,6 +199,30 @@ export default function InternationalSection() {
                 ))}
               </div>
             </motion.div>
+
+            {/* Financing callout */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.65 }}
+              className="mt-4 p-5 rounded-2xl bg-gold-500/10 border border-gold-500/25
+                         flex items-start gap-4"
+            >
+              <div className="w-9 h-9 rounded-xl bg-gold-500/20 flex-shrink-0
+                              flex items-center justify-center text-gold-400 text-lg font-bold">
+                €
+              </div>
+              <div>
+                <p className="text-gold-300 font-semibold text-sm uppercase tracking-wider mb-1">
+                  Paiement flexible
+                </p>
+                <p className="text-white/70 text-sm leading-relaxed">
+                  30% à la réservation, solde à l'arrivée.
+                  Virements SEPA et cartes bancaires européennes acceptés.
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

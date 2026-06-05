@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import { motion } from 'framer-motion'
-import { Phone, MapPin, Clock, Mail } from 'lucide-react'
+import { Phone, MapPin, Clock, Instagram, Facebook } from 'lucide-react'
 import Logo from '@/components/ui/Logo'
 
 const WhatsAppIcon = () => (
@@ -59,6 +59,29 @@ export default function Footer() {
               <div className="flex items-start gap-3 text-white/60 text-sm">
                 <Clock className="w-4 h-4 text-gold-500 flex-shrink-0 mt-0.5" />
                 {t('hours')}
+              </div>
+              {/* Social media */}
+              <div className="flex items-center gap-3 pt-2">
+                <a
+                  href="https://www.instagram.com/drkadribadr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Dr. Kadri Badr"
+                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center
+                             hover:bg-gold-500 transition-colors duration-200"
+                >
+                  <Instagram className="w-4 h-4 text-white" />
+                </a>
+                <a
+                  href="https://www.facebook.com/drkadribadr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook Dr. Kadri Badr"
+                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center
+                             hover:bg-gold-500 transition-colors duration-200"
+                >
+                  <Facebook className="w-4 h-4 text-white" />
+                </a>
               </div>
             </div>
           </div>

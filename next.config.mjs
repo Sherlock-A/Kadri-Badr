@@ -8,6 +8,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'drbadrkadri.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'i.ytimg.com' },
     ],
     formats: ['image/avif', 'image/webp'],
   },

@@ -13,7 +13,8 @@ const doctorStats = [
   { end: 99, suffix: '%', decimals: 0, key: 'stat_3' },
 ]
 
-const VIDEO_ID = 'VOTRE_VIDEO_YOUTUBE_ID'
+const VIDEO_ID = 'GWGENyN6_2I'
+const VIDEO_THUMB = 'https://i.ytimg.com/vi/GWGENyN6_2I/maxresdefault.jpg'
 
 export default function DoctorSection() {
   const t = useTranslations('doctor')
@@ -194,10 +195,10 @@ export default function DoctorSection() {
               /* Thumbnail + play button */
               <div className="relative w-full h-full">
                 <Image
-                  src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1280&q=90"
-                  alt="Vidéo Dr. Kadri Badr"
+                  src={VIDEO_THUMB}
+                  alt="Vidéo implant dentaire — Clinique Maroc"
                   fill
-                  className="object-cover opacity-70"
+                  className="object-cover opacity-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 to-navy-900/30" />
 

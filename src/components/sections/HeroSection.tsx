@@ -110,6 +110,24 @@ export default function HeroSection() {
             animate="visible"
             className="flex flex-col gap-6"
           >
+            {/* Trust micro-bar — above fold, first thing seen */}
+            <motion.div variants={itemVariants}>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6">
+                {[
+                  { v: '4.9★', l: 'Google' },
+                  { v: '2 000+', l: 'Patients' },
+                  { v: '30', l: 'Nationalités' },
+                  { v: 'Nobel Biocare', l: 'Certifié' },
+                ].map((item) => (
+                  <div key={item.l} className="flex items-center gap-1.5">
+                    <span className="text-gold-400 font-semibold text-sm">{item.v}</span>
+                    <span className="text-white/40 text-xs">{item.l}</span>
+                    <span className="text-white/20 text-xs hidden sm:block">·</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
             {/* Badge */}
             <motion.div variants={itemVariants}>
               <span className="section-badge-white">
@@ -118,9 +136,9 @@ export default function HeroSection() {
               </span>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline — emotional + specific */}
             <motion.div variants={itemVariants}>
-              <h1 className="heading-xl text-white">
+              <h1 className="heading-xl text-white mt-4">
                 {t('headline_1')}{' '}
                 <br />
                 <span className="text-gold-gradient text-glow-gold">
@@ -129,10 +147,19 @@ export default function HeroSection() {
               </h1>
             </motion.div>
 
+            {/* Value proposition — savings callout */}
+            <motion.div variants={itemVariants}>
+              <div className="inline-flex items-center gap-3 bg-trust/15 border border-trust/30
+                              rounded-2xl px-4 py-2.5">
+                <span className="text-trust font-bold text-base">Économisez jusqu'à 70%</span>
+                <span className="text-white/50 text-xs">vs tarifs européens</span>
+              </div>
+            </motion.div>
+
             {/* Subtext */}
             <motion.p
               variants={itemVariants}
-              className="body-lg text-white/65 max-w-lg"
+              className="body-lg text-white/60 max-w-lg -mt-1"
             >
               {t('subtext')}
             </motion.p>

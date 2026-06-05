@@ -4,194 +4,290 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import {
-  Sparkles, Zap, Star, Layers, LifeBuoy, Settings
+  Shield, Sparkles, Sun, ScanLine, Layers, Clock, ArrowRight
 } from 'lucide-react'
 
 const services = [
   {
     key: 'implants',
-    icon: Settings,
-    gradient: 'from-navy-800 to-navy-900',
-    iconBg: 'bg-gold-500/15',
+    icon: Shield,
+    price: 'dès 800 €',
+    iconBg: 'bg-navy-900',
     iconColor: 'text-gold-400',
-    image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80',
+    accent: 'bg-gradient-to-r from-navy-700 to-navy-900',
+    featured: true,
   },
   {
     key: 'veneers',
     icon: Sparkles,
-    gradient: 'from-[#1a3a7d] to-navy-900',
-    iconBg: 'bg-gold-500/15',
-    iconColor: 'text-gold-400',
-    image: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&q=80',
+    price: 'dès 250 € / unité',
+    iconBg: 'bg-gold-500',
+    iconColor: 'text-white',
+    accent: 'bg-gradient-to-r from-gold-400 to-gold-600',
+    featured: true,
   },
   {
     key: 'whitening',
-    icon: Zap,
-    gradient: 'from-navy-800 to-navy-900',
+    icon: Sun,
+    price: 'dès 150 €',
     iconBg: 'bg-trust-light',
-    iconColor: 'text-trust',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80',
+    iconColor: 'text-trust-dark',
+    accent: 'bg-gradient-to-r from-trust to-trust-dark',
+    featured: false,
   },
   {
     key: 'design',
-    icon: Layers,
-    gradient: 'from-[#1a3a7d] to-navy-900',
-    iconBg: 'bg-gold-500/15',
-    iconColor: 'text-gold-400',
-    image: 'https://images.unsplash.com/photo-1609840112990-4265448268b4?w=600&q=80',
+    icon: ScanLine,
+    price: 'Devis gratuit',
+    iconBg: 'bg-navy-50',
+    iconColor: 'text-navy-700',
+    accent: 'bg-gradient-to-r from-navy-300 to-navy-500',
+    featured: false,
   },
   {
     key: 'reconstruction',
-    icon: Star,
-    gradient: 'from-navy-800 to-navy-900',
-    iconBg: 'bg-gold-500/15',
-    iconColor: 'text-gold-400',
-    image: 'https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80',
+    icon: Layers,
+    price: 'Sur devis',
+    iconBg: 'bg-gold-50',
+    iconColor: 'text-gold-700',
+    accent: 'bg-gradient-to-r from-gold-300 to-gold-500',
+    featured: false,
   },
   {
     key: 'emergency',
-    icon: LifeBuoy,
-    gradient: 'from-[#1a3a7d] to-navy-900',
-    iconBg: 'bg-red-500/10',
-    iconColor: 'text-red-400',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80',
+    icon: Clock,
+    price: 'Disponible 24h/24',
+    iconBg: 'bg-red-50',
+    iconColor: 'text-red-500',
+    accent: 'bg-gradient-to-r from-red-400 to-red-600',
+    featured: false,
   },
 ]
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.08 } },
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50, filter: 'blur(4px)' },
+  hidden: { opacity: 0, y: 32, filter: 'blur(4px)' },
   visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
+    opacity: 1, y: 0, filter: 'blur(0px)',
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
+}
+
+interface ServiceCardProps {
+  service: typeof services[0]
+  t: ReturnType<typeof useTranslations>
+  tc: ReturnType<typeof useTranslations>
+}
+
+function ServiceCard({ service, t, tc }: ServiceCardProps) {
+  const Icon = service.icon
+  return (
+    <motion.a
+      href="#contact"
+      variants={cardVariants}
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      className="group relative flex flex-col bg-white rounded-3xl
+                 border border-gray-100 shadow-sm overflow-hidden
+                 hover:shadow-xl hover:border-gray-200
+                 transition-all duration-400 cursor-pointer"
+    >
+      {/* Top section */}
+      <div className="p-7 pb-5 flex-1">
+        {/* Icon + Tag row */}
+        <div className="flex items-start justify-between mb-6">
+          <div className={`w-13 h-13 ${service.iconBg} rounded-2xl
+                          flex items-center justify-center flex-shrink-0
+                          group-hover:scale-110 transition-transform duration-300`}
+               style={{ width: '3.25rem', height: '3.25rem' }}
+          >
+            <Icon className={`w-6 h-6 ${service.iconColor}`} />
+          </div>
+          <span className="text-[10px] font-bold uppercase tracking-widest
+                           text-gold-700 bg-gold-50 border border-gold-200
+                           px-3 py-1.5 rounded-full ml-3 text-right leading-none pt-2">
+            {t(`${service.key}.tag` as any)}
+          </span>
+        </div>
+
+        {/* Name */}
+        <h3 className="font-playfair text-xl font-bold text-navy-900 mb-2.5
+                       group-hover:text-navy-800 transition-colors leading-snug">
+          {t(`${service.key}.name` as any)}
+        </h3>
+
+        {/* Description */}
+        <p className="text-navy-500 text-sm leading-relaxed">
+          {t(`${service.key}.desc` as any)}
+        </p>
+      </div>
+
+      {/* Bottom — price + CTA */}
+      <div className="px-7 py-4 border-t border-gray-50
+                      flex items-center justify-between">
+        <div>
+          <p className="text-[10px] text-navy-400 uppercase tracking-wider mb-0.5">
+            Tarif
+          </p>
+          <p className="text-navy-800 font-semibold text-sm">{service.price}</p>
+        </div>
+        <span className="flex items-center gap-1 text-gold-600 text-sm font-semibold
+                         group-hover:gap-2.5 transition-all duration-200">
+          {tc('learn_more')}
+          <ArrowRight className="w-3.5 h-3.5" />
+        </span>
+      </div>
+
+      {/* Accent line — slides in on hover */}
+      <div className={`absolute bottom-0 inset-x-0 h-0.5 ${service.accent}
+                       scale-x-0 group-hover:scale-x-100
+                       transition-transform duration-500 origin-left`} />
+    </motion.a>
+  )
 }
 
 export default function ServicesSection() {
   const t = useTranslations('services')
   const tc = useTranslations('common')
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  const featured = services.filter(s => s.featured)
+  const standard = services.filter(s => !s.featured)
 
   return (
     <section id="services" className="py-24 lg:py-32 bg-cream-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="max-w-2xl mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
-            <span className="section-badge mb-4">
+            <span className="section-badge mb-5">
               <Sparkles className="w-3 h-3" />
-              Excellence
+              {t('title')}
             </span>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="heading-lg text-navy-900 mb-4"
+            transition={{ delay: 0.1 }}
+            className="heading-lg text-navy-900 mt-4 mb-4"
           >
-            {t('title')}
+            Tout ce dont votre{' '}
+            <span className="text-gold-gradient">sourire a besoin</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="body-lg text-navy-600 max-w-2xl mx-auto"
+            transition={{ delay: 0.2 }}
+            className="body-md text-navy-500"
           >
             {t('subtitle')}
           </motion.p>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="divider-gold mx-auto mt-6"
-          />
         </div>
 
-        {/* Grid */}
+        {/* Featured 2 services — larger */}
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid md:grid-cols-2 gap-5 mb-5"
         >
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <motion.div
-                key={service.key}
-                variants={cardVariants}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="service-card group"
-              >
-                {/* Card top — dark gradient */}
-                <div className={`relative h-44 bg-gradient-to-br ${service.gradient} overflow-hidden`}>
-                  {/* Background image */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center opacity-20
-                                group-hover:opacity-30 group-hover:scale-105
-                                transition-all duration-700"
-                    style={{
-                      backgroundImage: `url(${service.image})`,
-                    }}
-                  />
-                  {/* Tag */}
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-gold-500/20 text-gold-400 text-[10px] font-semibold
-                                     tracking-widest uppercase px-3 py-1 rounded-full
-                                     border border-gold-500/30">
-                      {t(`${service.key}.tag` as any)}
-                    </span>
+          {featured.map((service) => (
+            <motion.a
+              key={service.key}
+              href="#contact"
+              variants={cardVariants}
+              whileHover={{ y: -5, transition: { duration: 0.25 } }}
+              className={`group relative overflow-hidden rounded-3xl cursor-pointer
+                         ${service.key === 'implants'
+                           ? 'bg-navy-900 text-white'
+                           : 'bg-gold-500 text-navy-900'
+                         }`}
+            >
+              {/* Shine */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent
+                              via-white/8 to-transparent -translate-x-full
+                              group-hover:translate-x-full transition-transform duration-700" />
+
+              <div className="p-8 lg:p-10">
+                <div className="flex items-start justify-between mb-8">
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center
+                                  ${service.key === 'implants'
+                                    ? 'bg-white/10'
+                                    : 'bg-navy-900/15'
+                                  }`}>
+                    {service.key === 'implants'
+                      ? <Shield className="w-7 h-7 text-gold-400" />
+                      : <Sparkles className="w-7 h-7 text-navy-900" />
+                    }
                   </div>
-                  {/* Icon */}
-                  <div className="absolute bottom-4 left-5">
-                    <div className={`w-12 h-12 ${service.iconBg} rounded-2xl
-                                    flex items-center justify-center
-                                    group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className={`w-6 h-6 ${service.iconColor}`} />
-                    </div>
-                  </div>
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent
-                                  via-white/5 to-transparent -translate-x-full
-                                  group-hover:translate-x-full transition-transform duration-700" />
+                  <span className={`text-[10px] font-bold uppercase tracking-widest
+                                   px-3 py-1.5 rounded-full border
+                                   ${service.key === 'implants'
+                                     ? 'bg-white/10 border-white/20 text-white/80'
+                                     : 'bg-navy-900/10 border-navy-900/20 text-navy-800'
+                                   }`}>
+                    {t(`${service.key}.tag` as any)}
+                  </span>
                 </div>
 
-                {/* Card body */}
-                <div className="p-6">
-                  <h3 className="font-playfair text-xl font-bold text-navy-900 mb-2">
-                    {t(`${service.key}.name` as any)}
-                  </h3>
-                  <p className="text-navy-600 text-sm leading-relaxed mb-4">
-                    {t(`${service.key}.desc` as any)}
-                  </p>
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-1.5 text-gold-600
-                               text-sm font-semibold hover:gap-3 transition-all duration-200"
-                  >
-                    {tc('learn_more')}
-                    <span className="text-base">→</span>
-                  </a>
+                <h3 className={`font-playfair text-2xl lg:text-3xl font-bold mb-3
+                                ${service.key === 'implants' ? 'text-white' : 'text-navy-900'}`}>
+                  {t(`${service.key}.name` as any)}
+                </h3>
+                <p className={`text-sm leading-relaxed mb-8 max-w-sm
+                               ${service.key === 'implants' ? 'text-white/65' : 'text-navy-700'}`}>
+                  {t(`${service.key}.desc` as any)}
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className={`text-[10px] uppercase tracking-wider mb-0.5
+                                  ${service.key === 'implants' ? 'text-white/40' : 'text-navy-500'}`}>
+                      Tarif
+                    </p>
+                    <p className={`font-bold text-base
+                                  ${service.key === 'implants' ? 'text-gold-400' : 'text-navy-900'}`}>
+                      {service.price}
+                    </p>
+                  </div>
+                  <span className={`flex items-center gap-1.5 text-sm font-semibold
+                                   group-hover:gap-3 transition-all duration-200
+                                   ${service.key === 'implants' ? 'text-white' : 'text-navy-900'}`}>
+                    Devis gratuit <ArrowRight className="w-4 h-4" />
+                  </span>
                 </div>
-              </motion.div>
-            )
-          })}
+              </div>
+            </motion.a>
+          ))}
+        </motion.div>
+
+        {/* Standard 4 services — smaller grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        >
+          {standard.map((service) => (
+            <ServiceCard
+              key={service.key}
+              service={service}
+              t={t}
+              tc={tc}
+            />
+          ))}
         </motion.div>
 
         {/* Bottom CTA */}
@@ -199,28 +295,18 @@ export default function ServicesSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-12"
+          transition={{ delay: 0.3 }}
+          className="text-center mt-14"
         >
+          <p className="text-navy-400 text-sm mb-5">
+            Consultation gratuite · Réponse sous 24h · Sans engagement
+          </p>
           <a href="#contact" className="btn-navy">
-            <Calendar className="w-4 h-4" />
-            {tc('free_consultation')}
+            Obtenir mon devis personnalisé
+            <ArrowRight className="w-4 h-4" />
           </a>
         </motion.div>
       </div>
     </section>
-  )
-}
-
-function Calendar({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-         className={className}>
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-      <line x1="16" y1="2" x2="16" y2="6" />
-      <line x1="8" y1="2" x2="8" y2="6" />
-      <line x1="3" y1="10" x2="21" y2="10" />
-    </svg>
   )
 }

@@ -1,34 +1,23 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { Star } from 'lucide-react'
 import { fadeUp, scaleIn, staggerFast, viewport } from '@/lib/motion'
 
-const certifications = [
-  'Nobel Biocare',
-  'Straumann',
-  'Ivoclar EMAX',
-  'CEREC 3D',
-  'CE Certifié',
-  'ISO 9001',
-  'Nobel Biocare',
-  'Straumann',
-  'Ivoclar EMAX',
-  'CEREC 3D',
-]
-
+// flagcdn.com — CDN gratuit, drapeaux PNG fiables sur tous les OS
 const countries = [
-  { flag: '🇫🇷', name: 'France' },
-  { flag: '🇧🇪', name: 'Belgique' },
-  { flag: '🇨🇭', name: 'Suisse' },
-  { flag: '🇩🇪', name: 'Allemagne' },
-  { flag: '🇬🇧', name: 'Royaume-Uni' },
-  { flag: '🇪🇸', name: 'Espagne' },
-  { flag: '🇮🇹', name: 'Italie' },
-  { flag: '🇸🇦', name: 'Arabie Saoudite' },
-  { flag: '🇦🇪', name: 'Émirats' },
-  { flag: '🇨🇦', name: 'Canada' },
+  { code: 'fr', name: 'France' },
+  { code: 'be', name: 'Belgique' },
+  { code: 'ch', name: 'Suisse' },
+  { code: 'de', name: 'Allemagne' },
+  { code: 'gb', name: 'UK' },
+  { code: 'es', name: 'Espagne' },
+  { code: 'it', name: 'Italie' },
+  { code: 'sa', name: 'Arabie S.' },
+  { code: 'ae', name: 'Émirats' },
+  { code: 'ca', name: 'Canada' },
 ]
 
 const GoogleG = () => (
@@ -54,10 +43,19 @@ export default function TrustStrip() {
               Patients de 30 pays
             </span>
             {countries.map((c) => (
-              <div key={c.name} className="flex items-center gap-1.5 group cursor-default">
-                <span className="text-lg leading-none">{c.flag}</span>
-                <span className="text-[11px] text-navy-400 group-hover:text-navy-700 transition-colors
-                                 hidden sm:block">{c.name}</span>
+              <div key={c.code} className="flex items-center gap-1.5 group cursor-default">
+                <Image
+                  src={`https://flagcdn.com/w20/${c.code}.png`}
+                  alt={c.name}
+                  width={20}
+                  height={15}
+                  className="rounded-sm object-cover shadow-sm flex-shrink-0"
+                  unoptimized
+                />
+                <span className="text-[11px] text-navy-400 group-hover:text-navy-700
+                                 transition-colors hidden sm:block">
+                  {c.name}
+                </span>
               </div>
             ))}
             <span className="text-navy-300 text-xs ml-1">+20 autres</span>

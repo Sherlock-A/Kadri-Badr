@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, X, MessageCircle, Calendar } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { Phone, ChevronUp } from 'lucide-react'
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -12,12 +11,10 @@ const WhatsAppIcon = () => (
 )
 
 export default function FloatingActions() {
-  const t = useTranslations('common')
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setShowScrollTop(window.scrollY > 400)
+    const onScroll = () => setShowScrollTop(window.scrollY > 600)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -25,78 +22,74 @@ export default function FloatingActions() {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   return (
-    <div className="fixed bottom-24 right-5 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-3">
-      {/* Expandable actions */}
-      <AnimatePresence>
-        {isExpanded && (
-          <>
-            {/* Book appointment */}
-            <motion.a
-              href="#contact"
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ delay: 0.05 }}
-              onClick={() => setIsExpanded(false)}
-              className="flex items-center gap-3 bg-navy-900 text-white
-                         px-4 py-3 rounded-2xl shadow-luxury
-                         hover:bg-navy-800 transition-colors text-sm font-medium
-                         whitespace-nowrap"
-            >
-              <Calendar className="w-4 h-4 text-gold-500" />
-              {t('book_now')}
-            </motion.a>
+    <div className="fixed bottom-24 right-4 md:bottom-8 md:right-6 z-50 flex flex-col items-end gap-3">
 
-            {/* Phone */}
-            <motion.a
-              href="tel:+212666686646"
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ delay: 0.1 }}
-              className="flex items-center gap-3 bg-white text-navy-900
-                         px-4 py-3 rounded-2xl shadow-luxury
-                         hover:bg-cream-100 transition-colors text-sm font-medium
-                         whitespace-nowrap"
-            >
-              <Phone className="w-4 h-4 text-gold-500" />
-              +212 6 66 68 66 46
-            </motion.a>
-          </>
+      {/* Scroll to top */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.7 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={scrollTop}
+            className="w-10 h-10 bg-white/90 backdrop-blur-sm text-navy-900
+                       rounded-2xl flex items-center justify-center shadow-glass
+                       border border-navy-100 hover:bg-white transition-colors"
+            aria-label="Retour en haut"
+          >
+            <ChevronUp className="w-5 h-5" />
+          </motion.button>
         )}
       </AnimatePresence>
 
-      {/* Main WhatsApp / toggle button */}
-      <div className="flex items-center gap-3">
-        {/* Toggle expand */}
-        <motion.button
-          onClick={() => setIsExpanded(!isExpanded)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`w-12 h-12 rounded-2xl flex items-center justify-center
-                      shadow-luxury transition-all duration-300
-                      ${isExpanded ? 'bg-gray-600 text-white' : 'bg-white text-navy-900'}`}
-          aria-label={isExpanded ? 'Close' : 'More options'}
-        >
-          {isExpanded ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5 text-gold-500" />}
-        </motion.button>
+      {/* Phone — desktop only */}
+      <motion.a
+        href="tel:+212666686646"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1.2 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="hidden md:flex items-center gap-2 bg-white/90 backdrop-blur-sm
+                   text-navy-900 px-4 py-2.5 rounded-2xl shadow-glass
+                   border border-navy-100 hover:bg-white transition-colors
+                   text-sm font-medium"
+        aria-label="Appeler"
+      >
+        <Phone className="w-4 h-4 text-gold-500" />
+        +212 6 66 68 66 46
+      </motion.a>
 
-        {/* WhatsApp CTA */}
+      {/* WhatsApp — always visible, primary CTA */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
+      >
         <motion.a
-          href={`https://wa.me/212666686646?text=${encodeURIComponent(t('wa_message'))}`}
+          href={`https://wa.me/212666686646?text=${encodeURIComponent('Bonjour Dr. Kadri Badr, je souhaite une consultation gratuite.')}`}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          animate={{ boxShadow: ['0 0 0 0 rgba(37,211,102,0.4)', '0 0 0 16px rgba(37,211,102,0)', '0 0 0 0 rgba(37,211,102,0)'] }}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.94 }}
+          animate={{
+            boxShadow: [
+              '0 0 0 0 rgba(37,211,102,0.5)',
+              '0 0 0 18px rgba(37,211,102,0)',
+              '0 0 0 0 rgba(37,211,102,0)',
+            ],
+          }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
-          className="w-14 h-14 bg-[#25D366] text-white rounded-2xl
-                     flex items-center justify-center shadow-lg"
-          aria-label="WhatsApp"
+          className="flex items-center gap-3 bg-[#25D366] text-white
+                     pl-4 pr-5 py-3.5 rounded-2xl shadow-lg font-semibold text-sm"
+          aria-label="WhatsApp — Consultation gratuite"
         >
           <WhatsAppIcon />
+          <span className="hidden sm:block">Consultation gratuite</span>
         </motion.a>
-      </div>
+      </motion.div>
     </div>
   )
 }

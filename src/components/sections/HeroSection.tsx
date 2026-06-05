@@ -77,7 +77,7 @@ export default function HeroSection() {
         </div>
 
         {/* Clinic image with overlay */}
-        <div className="absolute inset-0 opacity-25">
+        <div className="absolute inset-0 opacity-35">
           <Image
             src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
             alt="Cabinet dentaire Dr. Kadri Badr"
@@ -85,6 +85,8 @@ export default function HeroSection() {
             priority
             className="object-cover"
           />
+          {/* Cinematic vignette */}
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-transparent to-navy-950/40" />
         </div>
 
         {/* Grid pattern */}
@@ -135,47 +137,63 @@ export default function HeroSection() {
               {t('subtext')}
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs — WhatsApp primary */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-3 pt-2"
             >
-              <a href="#contact" className="btn-gold">
-                <Calendar className="w-4 h-4" />
-                {t('cta_book')}
-              </a>
               <a
-                href={`https://wa.me/212666686646?text=${encodeURIComponent('Bonjour Dr. Kadri Badr, je souhaite une consultation.')}`}
+                href={`https://wa.me/212666686646?text=${encodeURIComponent('Bonjour Dr. Kadri Badr, je souhaite une consultation gratuite.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-whatsapp"
+                className="btn-whatsapp text-base px-7 py-4 shadow-lg"
               >
                 <WhatsAppIcon />
                 {t('cta_whatsapp')}
               </a>
+              <a href="#contact" className="btn-outline">
+                <Calendar className="w-4 h-4" />
+                {t('cta_book')}
+              </a>
             </motion.div>
 
-            {/* Trust strip */}
+            {/* Trust strip + response time */}
             <motion.div
               variants={itemVariants}
-              className="flex items-center gap-4 pt-2"
+              className="flex flex-wrap items-center gap-5 pt-2"
             >
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full bg-gradient-to-br
-                               from-gold-300 to-gold-600 border-2 border-navy-900"
-                  />
-                ))}
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
+              {/* Avatars + rating */}
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className="w-8 h-8 rounded-full bg-gradient-to-br
+                                 from-gold-300 to-gold-600 border-2 border-navy-900"
+                    />
                   ))}
                 </div>
-                <span className="text-white/60 text-xs">{t('trust_count')}</span>
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
+                    ))}
+                  </div>
+                  <span className="text-white/60 text-xs">{t('trust_count')}</span>
+                </div>
+              </div>
+
+              {/* Response time badge */}
+              <div className="flex items-center gap-2 bg-white/8 border border-white/15
+                              rounded-xl px-3 py-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full
+                                   rounded-full bg-trust opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-trust" />
+                </span>
+                <span className="text-white/70 text-xs font-medium">
+                  Répond en moins d&apos;1h
+                </span>
               </div>
             </motion.div>
           </motion.div>

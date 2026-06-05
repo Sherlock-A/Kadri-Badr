@@ -194,10 +194,10 @@ export default function DoctorSection() {
               /* Thumbnail + play button */
               <div className="relative w-full h-full">
                 <Image
-                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=90"
+                  src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1280&q=90"
                   alt="Vidéo Dr. Kadri Badr"
                   fill
-                  className="object-cover opacity-60"
+                  className="object-cover opacity-70"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 to-navy-900/30" />
 

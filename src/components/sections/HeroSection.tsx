@@ -65,31 +65,29 @@ export default function HeroSection() {
         {/* Gradient base */}
         <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-[#1a3a7d]" />
 
-        {/* Fallback photo (shown while video loads) */}
-        <div className="absolute inset-0 opacity-30">
+        {/* Ken Burns animated background — premium cinema effect */}
+        <motion.div
+          className="absolute inset-0 opacity-40"
+          animate={{
+            scale: [1, 1.1, 1.05, 1],
+            x: ['0%', '-1.5%', '1%', '0%'],
+            y: ['0%', '0.5%', '-0.5%', '0%'],
+          }}
+          transition={{
+            duration: 22,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            repeatType: 'mirror',
+          }}
+        >
           <Image
-            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=85"
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=90"
             alt="Cabinet dentaire Dr. Kadri Badr"
             fill
             priority
             className="object-cover"
           />
-        </div>
-
-        {/* Video background — overlays photo */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=85"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-        >
-          <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-dentist-examining-patient-teeth-22156-small.mp4"
-            type="video/mp4"
-          />
-        </video>
+        </motion.div>
 
         {/* Cinematic overlays */}
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/85 via-navy-900/50 to-navy-950/60" />

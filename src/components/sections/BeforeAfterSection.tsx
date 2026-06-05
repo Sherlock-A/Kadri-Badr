@@ -9,23 +9,23 @@ import { GripVertical } from 'lucide-react'
 const cases = [
   {
     key: 'case_1',
-    // Hollywood Smile — facettes EMAX
-    before: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=90',
-    after:  'https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=900&q=90',
+    // Hollywood Smile — homme sourire naturel → femme sourire éclatant
+    before: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=900&q=90',
+    after:  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&q=90',
     durKey: 'dur_1',
   },
   {
     key: 'case_2',
-    // Implants — reconstruction complète
-    before: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=900&q=90',
-    after:  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&q=90',
+    // Implants — consultation radio → homme sourire confiant
+    before: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=900&q=90',
+    after:  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=90',
     durKey: 'dur_2',
   },
   {
     key: 'case_3',
-    // Blanchiment laser
-    before: 'https://images.unsplash.com/photo-1516901408151-28c77cc44aa3?w=900&q=90',
-    after:  'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=90',
+    // Blanchiment — femme naturelle → femme sourire lumineux
+    before: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=900&q=90',
+    after:  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=900&q=90',
     durKey: 'dur_3',
   },
 ]

@@ -9,20 +9,23 @@ import { GripVertical } from 'lucide-react'
 const cases = [
   {
     key: 'case_1',
-    before: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80',
-    after:  'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&q=80',
+    // Hollywood Smile — facettes EMAX
+    before: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=90',
+    after:  'https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=900&q=90',
     durKey: 'dur_1',
   },
   {
     key: 'case_2',
-    before: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80',
-    after:  'https://images.unsplash.com/photo-1609840112990-4265448268b4?w=600&q=80',
+    // Implants — reconstruction complète
+    before: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=900&q=90',
+    after:  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&q=90',
     durKey: 'dur_2',
   },
   {
     key: 'case_3',
-    before: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=600&q=80',
-    after:  'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=600&q=80',
+    // Blanchiment laser
+    before: 'https://images.unsplash.com/photo-1516901408151-28c77cc44aa3?w=900&q=90',
+    after:  'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=90',
     durKey: 'dur_3',
   },
 ]

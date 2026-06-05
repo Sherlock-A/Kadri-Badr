@@ -65,36 +65,38 @@ export default function HeroSection() {
         {/* Gradient base */}
         <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-[#1a3a7d]" />
 
-        {/* Decorative radial glow */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2
-                          w-[900px] h-[900px] rounded-full
-                          bg-gradient-radial from-gold-500/8 via-transparent to-transparent
-                          blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full
-                          bg-gradient-radial from-navy-700/30 via-transparent to-transparent
-                          blur-3xl" />
-        </div>
-
-        {/* Clinic image with overlay */}
-        <div className="absolute inset-0 opacity-35">
+        {/* Fallback photo (shown while video loads) */}
+        <div className="absolute inset-0 opacity-30">
           <Image
-            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=85"
             alt="Cabinet dentaire Dr. Kadri Badr"
             fill
             priority
             className="object-cover"
           />
-          {/* Cinematic vignette */}
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-transparent to-navy-950/40" />
         </div>
 
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+        {/* Video background — overlays photo */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=85"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        >
+          <source
+            src="https://assets.mixkit.co/videos/preview/mixkit-dentist-examining-patient-teeth-22156-small.mp4"
+            type="video/mp4"
+          />
+        </video>
 
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 inset-x-0 h-32
-                        bg-gradient-to-t from-navy-900 to-transparent" />
+        {/* Cinematic overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/85 via-navy-900/50 to-navy-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-navy-950/20" />
+
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-20" />
       </motion.div>
 
       {/* Content */}

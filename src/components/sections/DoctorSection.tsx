@@ -1,9 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { CheckCircle2, Award } from 'lucide-react'
+import { CheckCircle2, Award, Play } from 'lucide-react'
 import CountUp from '@/components/ui/CountUp'
 
 const doctorStats = [
@@ -12,9 +13,12 @@ const doctorStats = [
   { end: 99, suffix: '%', decimals: 0, key: 'stat_3' },
 ]
 
+const VIDEO_ID = 'VOTRE_VIDEO_YOUTUBE_ID'
+
 export default function DoctorSection() {
   const t = useTranslations('doctor')
   const th = useTranslations('hero')
+  const [videoPlaying, setVideoPlaying] = useState(false)
 
   return (
     <section id="doctor" className="py-24 lg:py-32 bg-white overflow-hidden">
@@ -166,6 +170,74 @@ export default function DoctorSection() {
             </div>
           </motion.div>
         </div>
+
+        {/* Video section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="mt-20"
+        >
+          <div className="text-center mb-8">
+            <h3 className="heading-sm text-navy-900 mb-2">
+              Le Dr. Kadri Badr vous parle
+            </h3>
+            <p className="text-navy-500 text-sm">
+              2 minutes pour comprendre notre approche et votre future transformation
+            </p>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden shadow-luxury
+                          bg-navy-900 aspect-video max-w-4xl mx-auto">
+            {!videoPlaying ? (
+              /* Thumbnail + play button */
+              <div className="relative w-full h-full">
+                <Image
+                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=90"
+                  alt="Vidéo Dr. Kadri Badr"
+                  fill
+                  className="object-cover opacity-60"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 to-navy-900/30" />
+
+                {/* Play button */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                  <motion.button
+                    onClick={() => setVideoPlaying(true)}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-20 h-20 bg-gold-500 hover:bg-gold-400 rounded-full
+                               flex items-center justify-center shadow-luxury-gold
+                               transition-colors"
+                    aria-label="Lancer la vidéo"
+                  >
+                    <Play className="w-8 h-8 text-white fill-white ml-1" />
+                  </motion.button>
+                  <div className="text-center">
+                    <p className="text-white font-semibold">
+                      Dr. Kadri Badr — Message personnel
+                    </p>
+                    <p className="text-white/60 text-sm">Durée : 1 min 30</p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <iframe
+                src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+                title="Dr. Kadri Badr — Cabinet Dentaire Fès"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            )}
+          </div>
+
+          <p className="text-center text-navy-400 text-xs mt-4">
+            Remplacez <code className="bg-navy-100 px-1 rounded">VOTRE_VIDEO_YOUTUBE_ID</code> dans{' '}
+            <code className="bg-navy-100 px-1 rounded">DoctorSection.tsx</code> par l&apos;ID de votre vidéo YouTube
+          </p>
+        </motion.div>
       </div>
     </section>
   )
